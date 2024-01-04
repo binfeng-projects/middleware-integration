@@ -1,0 +1,10 @@
+NBA	91
+CoachBillick	89
+espn	69
+SportsCenter	42
+TheOnion	41
+ESPNStatsInfo	41
+TMZ	39
+MeridianoTV	37
+BleacherReport	37
+darrenrovell	37

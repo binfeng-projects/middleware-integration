@@ -1,0 +1,5 @@
+spring:
+    application:
+        name: middleware
+    profiles:
+        active: test

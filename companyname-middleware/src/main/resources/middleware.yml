@@ -1,0 +1,257 @@
+logging:
+    file:
+        path: ${user.home}/logs/${spring.application.name}
+bf:
+    datasource:
+        bf-security:
+            url: jdbc:mysql://127.0.0.1:3306/bf_security?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=true
+            username: root
+            password: 111111
+            codegen-include: security_.*
+        es-codegen-test:
+            url: jdbc:mysql://127.0.0.1:3306/bf_security?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=true
+            username: root
+            password: 111111
+            codegen-include: security_.*
+        batch-test:
+            url: jdbc:mysql://110.42.188.35:3306/test_batch_1?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=true
+            username: root
+            password: 111111
+    redis:
+        bf-security:
+            #            如果配置了就会忽略host和port
+            url: '127.0.0.1:6379'
+#            username:   不需要就连key都不要有
+            password: 123456
+            database: 0  # Redis 数据库编号
+        user-center:
+            #            如果配置了就会忽略host和port
+            host: 127.0.0.1
+            port: 6379
+#            username:
+            password: 123456
+            database: 1  # Redis 数据库编号
+    elasticsearch:
+#        enabled: 'bf-security'
+        bf-security:
+            uris: 'http://127.0.0.1:9200'
+            username: elastic
+            password: elastic
+            codegen-ref: es-codegen-test
+        employee:
+            uris: 'http://127.0.0.1:9200'
+            username: elastic
+            password: elastic
+#           必须配置
+            codegen-ref: es-codegen-test
+    xxl:
+#        enabled: true
+        admin:
+            #    调度中心部署跟地址 [选填]：如调度中心集群部署存在多个地址则用逗号分隔。执行器将会使用该地址进行"执行器心跳注册"和"任务结果回调"；为空则关闭自动注册；
+            addresses: http://127.0.0.1:9090
+    storage:
+#        enabled: 'sh'
+        sh:
+            platform: tencent
+            bucket-name:
+            access-key-id:
+            access-key-secret:
+            region:
+    vms:
+#        enabled: 'hz,gz'
+        hz:
+            platform: aliyun
+            access-key-id: your-id
+            access-key-secret: your-ks
+            region: cn-hangzhou
+            call-show-number:
+            template-id: TTS_xxx
+        gz:
+            platform: tencent
+            access-key-id: your-id
+            access-key-secret: your-ks
+            region: ap-guangzhou
+            app-id: appid
+            template-id: 13333333xxx
+#    zookeeper:
+#        default:
+#            url: '127.0.0.1:2181'
+    kafka:
+        enabled: 'hz'
+        hz:
+            bootstrap-servers: '127.0.0.1:9300'
+            consumer:
+                group-id: test-job-local1
+            properties:
+                sasl:
+                    jaas:
+                        config: org.apache.kafka.common.security.plain.PlainLoginModule required username="bob" password="bob-password";
+
+    flink:
+        enabled: 'kafka'
+        kafka:
+            source-instance-ref: 'sh,hz'
+            sink-instance-ref: 'hz'
+    hadoop:
+        default: #假设广州集群，hdfs方式配置
+            fsUri: hdfs://127.0.0.1:9000
+            jobHistoryAddress: 127.0.0.1:10020
+            resourceManagerHost: 127.0.0.1
+            resourceManagerPort: 8032
+            resourceManagerSchedulerAddress: 127.0.0.1
+            resourceManagerSchedulerPort: 8030
+            config:  #
+                fs.defaultFS: hdfs://127.0.0.1:9000
+                mapreduce.framework.name: yarn
+                fs.hdfs.impl: org.apache.hadoop.hdfs.DistributedFileSystem
+        gz: #假设广州集群，腾讯云COS配置方式
+            fsUri: cosn://gaia-1318812101
+            resourceManagerAddress: #可以继承default
+            resourceManagerSchedulerAddress: #可以继承default
+            jobHistoryAddress: #可以继承default
+            config:  #
+                fs.defaultFS: cosn://{your-bucket-name}-{your-app-id}
+                fs.ofs.user.appid: {your-app-id}
+                fs.cosn.userinfo.secretId: {your-secretId}
+                fs.cosn.userinfo.secretKey: {your-secretKey}
+        hz: #假设杭州集群，阿里云OSS配置方式
+            resourceManagerAddress: #可以继承default
+            resourceManagerSchedulerAddress: #可以继承default
+            jobHistoryAddress: #可以继承default
+            config:  #
+                #                mapreduce.job.run-local: true
+                fs.defaultFS: oss://{your-bucket-name}/hadoop-test
+                fs.oss.impl: org.apache.hadoop.fs.aliyun.oss.AliyunOSSFileSystem
+                fs.oss.endpoint:
+                fs.oss.access-key-id:
+                fs.oss.access-key-secret:
+        #                fs.oss.security-token:
+        #                fs.oss.multipart.download.size:
+        us: #假设us集群，aws s3配置方式
+            resourceManagerAddress: #可以继承default
+            resourceManagerSchedulerAddress: #可以继承default
+            jobHistoryAddress: #可以继承default
+            config:  #
+                fs.defaultFS: s3a://{your-bucket-name}
+                fs.s3a.endpoint: s3.us-west-2.amazonaws.com
+                fs.s3a.access.key:
+                fs.s3a.secret.key:
+                fs.s3a.connection.maximum: 150
+                fs.s3a.connection.establish.timeout: 5000 # 单位:ms
+                fs.s3a.connection.timeout: 200000 # 单位:ms
+                fs.s3a.attempts.maximum: 20
+                fs.s3a.threads.max: 10
+                fs.s3a.threads.keepalivetime: 60 #单位：s
+    #            fs.s3a.aws.credentials.provider: com.amazonaws.auth.DefaultAWSCredentialsProviderChain
+    batch:
+        default:
+            dataSourceRef: batch-test
+        hz:
+            dataSourceRef: test
+    hbase:
+        default:
+            hadoopRef: default
+            zookeeper: 127.0.0.1:2181
+            tableName: testnamespace:testtable
+            familyName: f
+        hz:
+            hadoopRef: default
+            zookeeper: 127.0.0.1:2181
+            tableName: testnamespace:testtable
+            familyName: f
+    hive:
+        default:
+            hadoopRef: default
+            hiveUrl: jdbc:hive2://127.0.0.1:10000
+        hz:
+            hadoopRef: default
+            hiveUrl: jdbc:hive2://127.0.0.1:10000
+    yarn:
+        default:
+            hadoopRef: default
+            siteYarnAppClasspath: "/path/to/hadoop/libs/*"
+            container:
+                containerClass: org.springframework.yarn.container.DefaultYarnContainer
+            client:
+                launchcontext:
+#                    command: /usr/local/jdk-17.0.8/bin/java
+                    command: /Library/Java/JavaVirtualMachines/jdk-17.0.8.jdk/Contents/Home/bin/java
+            appmaster:
+                containerCount: 1
+                launchcontext:
+#                    command: /usr/local/jdk-17.0.8/bin/java
+                    useYarnAppClasspath: true
+                    command: /Library/Java/JavaVirtualMachines/jdk-17.0.8.jdk/Contents/Home/bin/java
+                    archiveFile: container.jar
+                    arguments:
+                        ---bf.yarn.mode: CONTAINER
+                        ---bf.yarn.enabled: default
+                    locality: false
+#                appmasterClass: org.springframework.yarn.am.StaticAppmaster
+                appmasterClass: org.springframework.yarn.am.StaticEventingAppmaster
+        yarn-batch-app:
+            batchRef: default
+            hadoopRef: default
+            appName: yarn-batch-app
+            client:
+                launchcontext:
+                    command: /Library/Java/JavaVirtualMachines/jdk-17.0.8.jdk/Contents/Home/bin/java
+                    arguments:
+                        ---bf.yarn.mode: APPMASTER
+                        ---bf.yarn.enabled: yarn-batch-app
+            container:
+                containerClass: org.springframework.yarn.batch.container.DefaultBatchYarnContainer
+            appmaster:
+                containerCount: 1
+                launchcontext:
+                    command: /Library/Java/JavaVirtualMachines/jdk-17.0.8.jdk/Contents/Home/bin/java
+                    archiveFile: container.jar
+                    arguments:
+                        ---bf.yarn.mode: CONTAINER
+                        ---bf.yarn.enabled: yarn-batch-app
+                    locality: false
+                appmasterClass: org.springframework.yarn.batch.am.BatchAppmaster
+        yarn-store-groups:
+            hadoopRef: default
+#            batchRef: default
+            appType: BOOT
+            appName: yarn-store-groups
+            applicationBaseDir: /app/
+            client:
+                launchcontext:
+                    command: /Library/Java/JavaVirtualMachines/jdk-17.0.8.jdk/Contents/Home/bin/java
+                    archiveFile: appmaster.jar
+                    arguments:
+                        ---bf.yarn.mode: APPMASTER
+                        ---bf.yarn.enabled: yarn-store-groups
+                clientClass: org.springframework.yarn.client.DefaultApplicationYarnClient
+                files:
+                    - "file:build/appmaster.jar"
+                    - "file:build/container.jar"
+#                resource:
+#                    memory: 1g
+            appmaster:
+                appmasterClass: org.springframework.yarn.am.cluster.ManagedContainerClusterAppmaster
+                keepContextAlive: true
+                containercluster:
+                    enabled: true
+                    clusters:
+                        store:
+                            projection:
+                                type: default
+                                data:
+                                    any: 1
+                            resource:
+                                priority: 10
+                                memory: 64
+                                virtualCores: 1
+                            launchcontext:
+                                command: /Library/Java/JavaVirtualMachines/jdk-17.0.8.jdk/Contents/Home/bin/java
+                                archiveFile: container.jar
+                                arguments:
+                                    ---bf.yarn.mode: CONTAINER
+                                    ---bf.yarn.enabled: yarn-store-groups
+                    locality: false
+dubbo:
+    registry:
+        address: zookeeper://127.0.0.1:2181

@@ -1,0 +1,1 @@
+HADOOP_HOME=/Users/bf/apps/hadoop-3.3.6

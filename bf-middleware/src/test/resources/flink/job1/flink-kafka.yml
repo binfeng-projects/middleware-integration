@@ -1,0 +1,9 @@
+#state:
+#    backend:
+#        type: filesystem
+#    checkpoints:
+#        dir: file:///tmp/checkpoints
+#execution:
+#    checkpointing:
+#        interval: 10s
+#        externalized-checkpoint-retention: RETAIN_ON_CANCELLATION

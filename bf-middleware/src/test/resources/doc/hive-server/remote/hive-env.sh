@@ -1,0 +1,1 @@
+HADOOP_HOME=/usr/local/hadoop-3.3.6

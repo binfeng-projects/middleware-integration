@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:lang="http://www.springframework.org/schema/lang"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/lang https://www.springframework.org/schema/lang/spring-lang.xsd">
+
+	<lang:groovy id="unzip-script">
+		<lang:inline-script>
+			class UnzipTasklet {
+			void execute() {
+			def ant = new AntBuilder()
+			ant.unzip(src:"src/test/resources/org/springframework/batch/samples/misc/groovy/data/files.zip",
+			dest:"target/groovyJob/staging")
+			}
+			}
+		</lang:inline-script>
+	</lang:groovy>
+
+	<lang:groovy id="zip-script">
+		<lang:inline-script>
+			class ZipTasklet {
+			void execute() {
+			def ant = new AntBuilder()
+			ant.mkdir(dir:"target/groovyJob/output")
+			ant.zip(destfile:"target/groovyJob/output/files.zip",
+			basedir:"target/groovyJob/staging", includes:"**")
+			}
+			}
+		</lang:inline-script>
+	</lang:groovy>
+</beans>

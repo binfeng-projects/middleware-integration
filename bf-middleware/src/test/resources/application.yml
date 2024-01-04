@@ -1,0 +1,16 @@
+spring:
+    main:
+        web-application-type: none
+    application:
+        name: middleware
+    profiles:
+        active: local
+bf:
+    hadoop:
+        default:
+            url: nomean
+    yarn:
+        default:
+            url: nomean
+    datasource:
+        enabled: 'bf-security'

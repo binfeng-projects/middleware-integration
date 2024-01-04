@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <!-- 如果部署在服务器，不能用localhost,外界会无法访问-->
+        <value>hdfs://127.0.0.1:9000</value>
+    </property>
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/Users/bf/apps/hdp</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.username.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.username.hosts</name>
+        <value>*</value>
+    </property>
+</configuration>

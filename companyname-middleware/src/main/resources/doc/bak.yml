@@ -1,0 +1,8 @@
+logging:
+  file:
+    path: ~/logs/mytest-example
+#  pattern:
+    #默认相当于如下
+    #    level: %5p [${spring.zipkin.service.name:${spring.application.name:-}},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]
+    #历史老人traceId的方案用的Spring-cloud-sleuth，想要覆盖原来的traceId ,需要覆盖这个配置key
+#    level: '%5p [%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{bizId}]'
