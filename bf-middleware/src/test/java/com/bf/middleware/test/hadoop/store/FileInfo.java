@@ -1,10 +1,9 @@
 package com.bf.middleware.test.hadoop.store;
 
-import org.apache.avro.reflect.Nullable;
 
 public class FileInfo {
 	private String name;
-	private @Nullable String path;
+	private String path;
 	private long size;
 	private long modified;
 

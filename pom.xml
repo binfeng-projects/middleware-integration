@@ -10,14 +10,20 @@
     </parent>
     <groupId>org.bf.framework</groupId>
     <artifactId>middleware-integration</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
+    <properties>
+        <!-- 自身模块 -->
+        <revision>1.0.0-SNAPSHOT</revision>
+        <!-- 测试和util -->
+        <bf-framework.version>0.0.8-SNAPSHOT</bf-framework.version>
+    </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.bf.framework</groupId>
                 <artifactId>bf-framework</artifactId>
-                <version>0.0.8-SNAPSHOT</version>
+                <version>${bf-framework.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -25,6 +31,54 @@
                 <groupId>com.qcloud.cos</groupId>
                 <artifactId>hadoop-cos</artifactId>
                 <version>3.3.0-8.3.2</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.tencentcloudapi</groupId>
+                        <artifactId>tencentcloud-sdk-java-common</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.json</groupId>
+                        <artifactId>json</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-files</artifactId>
+                <version>1.19-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-test-utils</artifactId>
+                <version>1.19-SNAPSHOT</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.google.guava</groupId>
+                        <artifactId>guava</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-mapreduce-examples</artifactId>
+                <version>3.3.6</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.persistence</groupId>
+                <artifactId>jakarta.persistence-api</artifactId>
+                <version>3.1.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

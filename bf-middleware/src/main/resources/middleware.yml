@@ -45,12 +45,10 @@ bf:
 #           必须配置
             codegen-ref: es-codegen-test
     xxl:
-#        enabled: true
         admin:
             #    调度中心部署跟地址 [选填]：如调度中心集群部署存在多个地址则用逗号分隔。执行器将会使用该地址进行"执行器心跳注册"和"任务结果回调"；为空则关闭自动注册；
             addresses: http://127.0.0.1:9090
     storage:
-#        enabled: 'sh'
         sh:
             platform: tencent
             bucket-name:
@@ -58,7 +56,6 @@ bf:
             access-key-secret:
             region:
     vms:
-#        enabled: 'hz,gz'
         hz:
             platform: aliyun
             access-key-id: your-id
@@ -77,7 +74,6 @@ bf:
 #        default:
 #            url: '127.0.0.1:2181'
     kafka:
-        enabled: 'hz'
         hz:
             bootstrap-servers: '127.0.0.1:9300'
             consumer:
@@ -88,7 +84,6 @@ bf:
                         config: org.apache.kafka.common.security.plain.PlainLoginModule required username="bob" password="bob-password";
 
     flink:
-        enabled: 'kafka'
         kafka:
             source-instance-ref: 'sh,hz'
             sink-instance-ref: 'hz'

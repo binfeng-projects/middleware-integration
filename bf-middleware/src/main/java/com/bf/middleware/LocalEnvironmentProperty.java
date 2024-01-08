@@ -16,6 +16,6 @@ public class LocalEnvironmentProperty implements EnvironmentPropertyPostProcesso
 
     @Override
     public String classPathConfigFileKey(){
-       return "com/bf/middleware";
+        return "middleware";
     }
 }

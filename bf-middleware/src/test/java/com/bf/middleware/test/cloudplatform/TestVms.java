@@ -1,19 +1,14 @@
 package com.bf.middleware.test.cloudplatform;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.bf.framework.boot.support.vms.VmsProxy;
 import org.bf.framework.common.util.CollectionUtils;
-import org.bf.framework.common.util.JSON;
 import org.bf.framework.test.base.BaseCoreTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Slf4j
 public class TestVms implements BaseCoreTest {

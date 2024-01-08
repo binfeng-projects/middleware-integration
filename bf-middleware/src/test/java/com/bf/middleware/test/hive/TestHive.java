@@ -1,7 +1,6 @@
 package com.bf.middleware.test.hive;
 
 import com.bf.middleware.test.batch.TestBatch;
-import com.google.common.collect.Lists;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.bf.framework.autoconfigure.batch.BatchProxy;
@@ -9,6 +8,7 @@ import org.bf.framework.autoconfigure.hadoop.HadoopProxy;
 import org.bf.framework.autoconfigure.hive.support.HiveRunnerTasklet;
 import org.bf.framework.autoconfigure.hive.support.HiveScript;
 import org.bf.framework.autoconfigure.hive.support.HiveTemplate;
+import org.bf.framework.common.util.CollectionUtils;
 import org.bf.framework.test.base.BaseCoreTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.BatchStatus;
@@ -94,7 +94,7 @@ public class TestHive implements BaseCoreTest {
         parameters.put("hiveContribJar", "hdfs://" + inputDir + "/hive-contrib-3.1.3.jar");
         parameters.put("localInPath", inputDir + "/apache");
         HiveScript script = new HiveScript(new ClassPathResource("apache-log-simple.hql"),parameters);
-        runner.setScripts(Lists.newArrayList(script)); //可以传入多个脚本
+        runner.setScripts(CollectionUtils.newArrayList(script)); //可以传入多个脚本
         runner.call();
     }
     @Test

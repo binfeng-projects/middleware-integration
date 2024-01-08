@@ -7,11 +7,9 @@ spring:
         active: local
 bf:
     hadoop:
-        enabled: 'hz'
+#        enabled: 'hz'
         default:
             url: nomean
     yarn:
         default:
             url: nomean
-    datasource:
-        enabled: 'bf-security'

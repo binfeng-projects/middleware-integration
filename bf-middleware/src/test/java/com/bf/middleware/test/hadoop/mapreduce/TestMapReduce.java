@@ -1,7 +1,6 @@
 package com.bf.middleware.test.hadoop.mapreduce;
 
 import com.bf.middleware.test.batch.TestBatch;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
@@ -17,6 +16,7 @@ import org.bf.framework.autoconfigure.batch.BatchProxy;
 import org.bf.framework.autoconfigure.hadoop.HadoopProxy;
 import org.bf.framework.autoconfigure.hadoop.batch.JobTasklet;
 import org.bf.framework.boot.util.SpringUtil;
+import org.bf.framework.common.util.CollectionUtils;
 import org.bf.framework.test.base.BaseCoreTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.BatchStatus;
@@ -71,7 +71,7 @@ public class TestMapReduce implements BaseCoreTest {
         runner.setJob(job);
         runner.setBeanFactory(SpringUtil.getContext());
         runner.afterPropertiesSet();
-        runner.setPreAction(Lists.newArrayList((Callable<Object>) () -> {
+        runner.setPreAction(CollectionUtils.newArrayList((Callable<Object>) () -> {
             if (!localShell.test(inputDir)) {
                 localShell.mkdir(inputDir);
                 localShell.chmod(700, inputDir);

@@ -1,5 +1,7 @@
 spring:
+    main:
+        web-application-type: none
     application:
         name: middleware
     profiles:
-        active: test
+        active: local

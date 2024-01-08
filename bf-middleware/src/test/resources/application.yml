@@ -12,5 +12,3 @@ bf:
     yarn:
         default:
             url: nomean
-    datasource:
-        enabled: 'bf-security'
