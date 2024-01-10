@@ -66,7 +66,11 @@
                     </exclusion>
                     <exclusion>
                         <groupId>com.google.guava</groupId>
-                        <artifactId>guava</artifactId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.google.code</groupId>
+                        <artifactId>*</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>

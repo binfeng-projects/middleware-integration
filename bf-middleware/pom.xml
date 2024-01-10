@@ -11,7 +11,15 @@
     <dependencies>
         <dependency>
             <groupId>org.bf.framework</groupId>
+            <artifactId>bf-framework-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.bf.framework</groupId>
             <artifactId>bf-framework-starter-jooq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.bf.framework</groupId>
+            <artifactId>bf-framework-starter-mybatis</artifactId>
         </dependency>
         <dependency>
             <groupId>org.bf.framework</groupId>
