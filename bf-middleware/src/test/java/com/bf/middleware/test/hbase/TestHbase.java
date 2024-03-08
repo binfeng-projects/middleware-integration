@@ -1,6 +1,5 @@
 package com.bf.middleware.test.hbase;
 
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.bf.framework.autoconfigure.hbase.HbaseProxy;
 import org.bf.framework.test.base.BaseCoreTest;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.io.IOException;
-import java.util.List;
 
 public class TestHbase  implements BaseCoreTest {
     private String tableName = "test:log";

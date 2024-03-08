@@ -1,7 +1,6 @@
 package com.bf.middleware.test.cloudplatform;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.hadoop.fs.FileStatus;
 import org.bf.framework.boot.support.storage.StorageProxy;
 import org.bf.framework.test.base.BaseCoreTest;
 import org.junit.jupiter.api.Test;

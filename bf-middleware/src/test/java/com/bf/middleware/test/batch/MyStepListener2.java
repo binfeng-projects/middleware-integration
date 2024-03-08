@@ -19,12 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
-import org.springframework.batch.core.annotation.*;
-import org.springframework.batch.core.scope.context.ChunkContext;
-import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ExecutionContext;
-import org.springframework.batch.samples.domain.trade.CustomerCredit;
-import org.springframework.batch.samples.file.multiline.Trade;
 import org.springframework.batch.support.PatternMatcher;
 
 /**

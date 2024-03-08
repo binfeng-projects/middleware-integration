@@ -90,5 +90,7 @@
         <module>bf-middleware</module>
         <module>ali-middleware</module>
         <module>companyname-middleware</module>
+        <module>jason-middleware</module>
+        <module>binfeng-middleware</module>
     </modules>
 </project>
